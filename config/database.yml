@@ -1,0 +1,23 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: playlists_test
+  host: localhost
+  pool: 5
+  username: yurig
+  password:
+development:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: playlists_development
+  pool: 5
+  username: yurig
+production:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: playlists_production
+  pool: 5
+  username: yurig
+  password:
