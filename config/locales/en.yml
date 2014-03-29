@@ -2,4 +2,28 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  playlists:
+    index:
+      video_manager: 'Video Manager'
+      default_name: 'My playlist'
+      choose_country: 'Choose country'
+    show:
+      playlist_item: 'Items in playlist'
+      playlist: 'Playlist'
+      delete_video: 'Delete Video'
+      add_video: 'Add'
+      empty_playlist: 'This Playlist is empty. Please add songs to them.'
+      new_entry: 'New entry'
+      back_to_playlist: 'Back to playlists list'
+      video_search: 'Video search'
+      video_search_field: 'Enter video name here...'
+      video_list: 'Video list'
+      video_hint: 'Use video search to find videos on youtube and add them to playlist'
+    basket:
+      empty_basket: 'You need add some video to this basket using YouTube search before added them to playlist'
+      remove: 'Remove from basket'
+    add_song:
+      add_button: 'Add song'
+      cancel_button: 'Cancel'
+      new_song_button: 'New song'
+      already_button: 'Already added song'

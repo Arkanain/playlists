@@ -1,0 +1,8 @@
+:plain
+  $('#playlist_basket').html("#{j(render template: 'playlists/basket')}");
+  cell_id = $('#playlist_basket').attr('cell_id');
+  song_id = $('#playlist_basket').attr('song_id');
+  images = $('.image a.video_link');
+  $.each(images, function(index, value) {
+    value.href += "&cell_id=" + cell_id + "&song_id=" + song_id
+  });
