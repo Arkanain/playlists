@@ -8,7 +8,6 @@ Playlists::Application.routes.draw do
     delete  'remove_video/:video_id', to: 'playlists#remove_video', as: 'remove_video'
     put     :add_to_basket
     delete  :remove_from_basket
-    get     'show_video/:video_id', to: 'playlists#show_video', as: 'show_video'
   end
 
   root to: 'playlists#index'
