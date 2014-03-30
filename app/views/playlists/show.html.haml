@@ -28,9 +28,9 @@
                         %td{width: "8%"}
                           .video-holder
                             .video-preview
-                              = link_to image_tag(video.youtube_image, class: 'youtube_image' )
+                              .video-view
+                                = link_to image_tag(video.youtube_image, class: 'youtube_image'), playlist_show_video_path(playlist_id: @playlist, video_id: video), remote: true
                               = link_to '', playlist_remove_video_path(playlist_id: @playlist, video_id: video), method: :delete, remote: true, class: 'remove fa fa-times'
-
                       - else
                         %td{width: "8%"}
                           .video-holder
@@ -47,8 +47,6 @@
           .new-song-entry
           = link_to I18n.t('playlists.show.new_entry'), playlist_new_song_entry_path(@playlist), remote: true, id: 'new-entry', class: 'button bt-sky round'
           = link_to I18n.t('playlists.show.back_to_playlist'), playlists_path, class: 'button bt-sky round'
-
-
     .row
       .large-12.medium-12.small-12.columns.mtm
         %h3
@@ -61,6 +59,7 @@
             %input.button.bt-sky.round.left{type: "submit", value: "Search"}/
           #video_holder
 
+#youtube-player.hidden
 
 .modal.hidden
   .modal-overlay
@@ -106,7 +105,7 @@
     });
   });
 
-  $(document).on('click', 'a.add_video', function(event) {
+  $(document).on('click', 'a.add_video', function(event){
     cell_id = $(event.currentTarget).attr('cell_id')
     song_id = $(event.currentTarget).attr('song_id')
     $('#playlist_basket').attr('cell_id', cell_id)
@@ -119,6 +118,10 @@
       value.href += "&cell_id=" + cell_id + "&song_id=" + song_id
     });
     $('.modal').removeClass('hidden');
+  });
+
+  $(document).on('click', '.youtube-modal', function(event){
+    $('#youtube-player').addClass('hidden');
   });
 
   $('.modal-close').on('click', function(){
