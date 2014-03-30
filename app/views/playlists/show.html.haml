@@ -28,8 +28,8 @@
                         %td{width: "8%"}
                           .video-holder
                             .video-preview
-                              .video-view
-                                = link_to image_tag(video.youtube_image, class: 'youtube_image'), playlist_show_video_path(playlist_id: @playlist, video_id: video), remote: true
+                              .video-view{ video_url: video.youtube_url }
+                                = image_tag(video.youtube_image, class: 'youtube_image')
                               = link_to '', playlist_remove_video_path(playlist_id: @playlist, video_id: video), method: :delete, remote: true, class: 'remove fa fa-times'
                       - else
                         %td{width: "8%"}
@@ -60,6 +60,13 @@
           #video_holder
 
 #youtube-player.hidden
+  .modal-overlay
+  .modal-wrapper
+    .video-inner.modal-inner
+      .video-close
+        .youtube-modal.modal-close.fa.fa-times
+      #youtube-video
+        %embed{ width: "640", height: "360", src: '', type: "application/x-shockwave-flash" }
 
 .modal.hidden
   .modal-overlay
@@ -120,10 +127,16 @@
     $('.modal').removeClass('hidden');
   });
 
+  $('.video-view').click(function(event) {
+    url = $(event.currentTarget).attr('video_url')
+    $('#youtube-video embed').attr('src', url);
+    $('#youtube-player').removeClass('hidden');
+  });
+
   $(document).on('click', '.youtube-modal', function(event){
     $('#youtube-player').addClass('hidden');
   });
 
-  $('.modal-close').on('click', function(){
+  $('.modal-close').click(function(){
     $('.modal').addClass('hidden');
   });
