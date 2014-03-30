@@ -86,6 +86,10 @@ class PlaylistsController < ApplicationController
     @video = Video.find(params[:video_id]).destroy
   end
 
+  def show_video
+    @video = Video.find(params[:video_id])
+  end
+
   private
 
   alias_method :get_playlists, :index

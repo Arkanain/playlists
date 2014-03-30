@@ -11,18 +11,19 @@
       width: 240px
 
   .video_list
-    border-bottom: 2px dotted #ccc
     margin: 0 0 15px 0
     li
       border-bottom: 2px dotted #ccc
       padding-bottom: 10px
       margin-bottom: 15px
       list-style: none
+      height: 430px
       .video_item
         p
           font-size: 0.9em
           line-height: 1.3em
-        
+        .description
+          height: 50px
         .clip
           cursor: pointer
           height: 280px
@@ -73,6 +74,9 @@
     right: 0px
     top: 0
 
+  .youtube_image:hover
+    cursor: pointer
+
 .modal-holder
   width: 120px
 
@@ -100,3 +104,20 @@
 
   #choose_entry, #collection_entry, #new_entry 
     display: none
+
+#youtube-player
+  .video-inner
+    background-color: black
+    .video-close
+      width: 100%
+      display: inline-block
+      .modal-close
+        background-color: black
+        float: right
+        right: 0
+        top: 0
+        position: relative
+        border-radius: 0
+        box-shadow: none
+    #youtube-video
+      text-align: center

@@ -147,7 +147,7 @@ var video_manager = {
         }else{
           li.innerHTML = '<div class="video_item">' +
             '<div><h4>' + entry.title + '</h4></div>' +
-            '<p>' + this.formatDescription(entry.description) + '</p>' +
+            '<p class="description">' + this.formatDescription(entry.description) + '</p>' +
             '<p>By <a href="http://www.youtube.com/profile?user='+entry.uploader+'">' + entry.uploader + '</a></p>' +
             '<p><b>Duration:</b> ' + this.formatDuration(entry.duration) + '</p>' +
             '<p>' + entry.viewCount + ' <b>views</b></p>' +

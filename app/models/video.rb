@@ -9,6 +9,6 @@ class Video < ActiveRecord::Base
   end
 
   def youtube_url
-    "http://youtu.be/#{self.youtube_id}"
+    "http://www.youtube.com/v/#{self.youtube_id}"
   end
 end
