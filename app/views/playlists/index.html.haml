@@ -1,0 +1,38 @@
+.row.playlist
+  .large-12.medium-12.small-12.columns
+    %h1
+      = I18n.t('playlists.index.video_manager')
+    .row
+      .large-7.medium-7.small-7.columns
+        %h3
+          = I18n.t('playlists.index.default_name')
+        %ul.items_list.mbm
+          - @playlists.each do |playlist|
+            %li
+              %div{ class: "edit-row-#{playlist.id}" }
+                = link_to playlist.title, playlist_path(playlist)
+                .controls
+                  = link_to content_tag(:i, '', class: 'fa fa-pencil-square-o'), edit_playlist_path(playlist), remote: true, id: 'rename', class: 'action-icon'
+                  = link_to content_tag(:i, '', class: 'fa fa-trash-o'), playlist_path(playlist), method: :delete, remote: true, id: 'delete', class: 'action-icon'
+              %div{ class: "edit-playlist-#{playlist.id}" }
+        = link_to 'New playlist', new_playlist_path, remote: true, id: 'new-list', class: 'button bt-sky round'
+        .new-playlist
+
+:javascript
+  $(document).on('click', 'a', function(event) {
+    switch(event.currentTarget.id) {
+      case 'rename':
+        $(event.currentTarget).parents("div[class^='edit-row-']").hide();
+        break;
+      case 'new-list':
+        $(event.currentTarget).hide();
+        break;
+      case 'cancel':
+        event.preventDefault();
+        event.stopPropagation();
+        $("div[class^='edit-row-']").show();
+        $('#new-list').show();
+        $('form').remove();
+        break;
+    }
+  });

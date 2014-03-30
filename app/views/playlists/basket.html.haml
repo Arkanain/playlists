@@ -1,0 +1,28 @@
+- if @basket.empty?
+  %span
+    = I18n.t('playlists.basket.empty_basket')
+
+- else
+  %ul.video-list
+    - @basket.each do |video|
+      %li.youtube_video_item
+        .modal-holder.left
+          = link_to '',
+                    playlist_remove_from_basket_path(playlist_id: @playlist.id, video_id: video.id),
+                    class: 'remove_link remove fa fa-times',
+                    remote: true,
+                    method: :delete
+          .image
+            = link_to image_tag(video.youtube_image, class: 'youtube_image'),
+                      playlist_add_video_path(playlist_id: @playlist.id, video_id: video.id),
+                      class: 'video_link',
+                      remote: true,
+                      method: :post,
+                      original_href: playlist_add_video_path(playlist_id: @playlist.id, video_id: video.id)
+          .name.left
+            = video.name
+
+:javascript
+  $('.remove_link').on('click', function(){
+    $(this).parent().addClass('hidden');
+  })

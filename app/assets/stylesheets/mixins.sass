@@ -1,0 +1,34 @@
+@mixin bt($bg, $hover)
+  background: $bg
+  &:hover
+    background: $hover
+  
+
+
+@mixin border-radius($radius) 
+  -webkit-border-radius: $radius
+  -moz-border-radius: $radius
+  border-radius: $radius
+
+
+@mixin box-shadow($properties) 
+  -webkit-box-shadow: $properties
+  -moz-box-shadow: $properties
+  box-shadow: $properties
+
+
+@mixin vertical-gradient($from, $to) 
+  background: $to
+  background-repeat: repeat-x
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $from), color-stop(100%, $to))
+  background-image: -webkit-linear-gradient(top, $from, $to)
+  background-image: -moz-linear-gradient(top, $from, $to)
+  background-image: -ms-linear-gradient(top, $from, $to)
+  background-image: -o-linear-gradient(top, $from, $to)
+  background-image: linear-gradient(top, $from, $to)
+
+
+@mixin hidden
+  display: none
+  visibility: hidden
+

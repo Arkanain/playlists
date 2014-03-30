@@ -1,0 +1,26 @@
+= form_for 'new_song', url: playlist_create_song_entry_path, remote: true do |f|
+  #choose_entry
+    #collection_entry
+      = f.collection_select :song_id, Song.all, :id, :title, style: 'display: none;'
+    #new_entry
+      = f.text_field :song_name
+    = f.submit I18n.t('playlists.add_song.add_button'), class: 'button bt-sky round'
+    = link_to I18n.t('playlists.add_song.cancel_button'), '', id: 'cancel', class: 'button bt-red round'
+  #song_entry
+    = link_to I18n.t('playlists.add_song.new_song_button'), '', id: 'new_song', class: 'button bt-green round'
+    = link_to I18n.t('playlists.add_song.already_button'), '', id: 'added_song', class: 'button bt-green round'
+
+:javascript
+  $('#new_song').click(function(e) {
+    e.preventDefault();
+    $('#choose_entry').show();
+    $('#new_entry').show();
+    $('#song_entry').hide();
+  });
+
+  $('#added_song').click(function(e) {
+    e.preventDefault();
+    $('#choose_entry').show();
+    $('#collection_entry').show();
+    $('#song_entry').hide();
+  });

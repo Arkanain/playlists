@@ -1,0 +1,126 @@
+.row
+  .large-12.medium-12.small-12.columns
+    %h1
+      = @playlist.title.capitalize
+    .row
+      #playlist_container
+        .large-12.medium-12.small-12.columns
+          %h3
+            = I18n.t('playlists.show.playlist_item')
+          %table#playlist_songs.large-12.medium-12.small-12.open_table.centered
+            %tbody
+              %tr
+                %th{width: "60%"}
+                  = I18n.t('playlists.show.playlist')
+                - @max_length.times do |number|
+                  %th.text-center{width: "8%"}
+                    = "Link #{(number + 65).chr}"
+                %th
+            %tbody#sortable
+              - @playlist.songs.each do |song|
+                %tr{id: "#{song.id}"}
+                  %td{width: "60%"}
+                    %h2
+                      = song.title
+                    - 4.times do |number|
+                      - if song.videos.pluck(:cell_id).include?(number)
+                        - video = song.videos.find_by_cell_id(number)
+                        %td{width: "8%"}
+                          .video-holder
+                            .video-preview
+                              = link_to image_tag(video.youtube_image, class: 'youtube_image' )
+                              = link_to '', playlist_remove_video_path(playlist_id: @playlist, video_id: video), method: :delete, remote: true, class: 'remove fa fa-times'
+
+                      - else
+                        %td{width: "8%"}
+                          .video-holder
+                            %a.add_video{ cell_id: number, song_id: song.id }
+                              .add
+                                %i.fa.fa-plus
+                                = I18n.t('playlists.show.add_video')
+                              = image_tag('http://placehold.it/100x100&text=video', alt: '', class: 'youtube_image')
+                  %td.action-icon{width: "8%"}
+                    = link_to content_tag(:i, '', class: 'fa fa-trash-o'), playlist_remove_song_entry_path(playlist_id: @playlist, song_id: song), method: :delete, remote: true, id: 'delete'
+          - if @playlist.songs.empty?
+            %p
+              = I18n.t('playlists.show.empty_playlist')
+          .new-song-entry
+          = link_to I18n.t('playlists.show.new_entry'), playlist_new_song_entry_path(@playlist), remote: true, id: 'new-entry', class: 'button bt-sky round'
+          = link_to I18n.t('playlists.show.back_to_playlist'), playlists_path, class: 'button bt-sky round'
+
+
+    .row
+      .large-12.medium-12.small-12.columns.mtm
+        %h3
+          = I18n.t('playlists.show.video_search')
+        .video_search
+          %p
+            = I18n.t('playlists.show.video_hint')
+          %form{onsubmit: "video_manager.init({ 'videoHolder': 'video_holder', 'type': 'search', 'q': document.getElementById('video_search').value }); return false;"}
+            %input#video_search{type: "text"}/
+            %input.button.bt-sky.round.left{type: "submit", value: "Search"}/
+          #video_holder
+
+
+.modal.hidden
+  .modal-overlay
+  .modal-wrapper
+    .modal-inner
+      .modal-close.fa.fa-times
+      %h3
+        = I18n.t('playlists.show.video_list')
+      #playlist_basket
+        = render template: 'playlists/basket'
+
+:javascript
+  $(document).on('click', 'a', function(event) {
+    switch(event.currentTarget.id) {
+      case 'new-entry':
+        $(event.currentTarget).hide();
+        break;
+      case 'cancel':
+        event.preventDefault();
+        event.stopPropagation();
+        $('#new-entry').show();
+        $('form').remove();
+        break;
+    }
+  });
+
+  $(function() {
+    var itemList = $("#sortable")
+    itemList.sortable({
+      axis: 'y',
+      update: function(event, ui) {
+        $.ajax({
+          url: "/playlists/#{@playlist.id}/change_track_number",
+          type: 'PUT',
+          async: true,
+          dataType: 'json',
+          data: {
+            order: itemList.sortable('toArray'),
+            playlist_id: "#{@playlist.id}"
+          }
+        });
+      }
+    });
+  });
+
+  $(document).on('click', 'a.add_video', function(event) {
+    cell_id = $(event.currentTarget).attr('cell_id')
+    song_id = $(event.currentTarget).attr('song_id')
+    $('#playlist_basket').attr('cell_id', cell_id)
+    $('#playlist_basket').attr('song_id', song_id)
+    images = $('.image a.video_link')
+    $.each(images, function(index, value) {
+      if(!!value.href.match('cell_id')) {
+        value.href = $(value).attr('original_href')
+      }
+      value.href += "&cell_id=" + cell_id + "&song_id=" + song_id
+    });
+    $('.modal').removeClass('hidden');
+  });
+
+  $('.modal-close').on('click', function(){
+    $('.modal').addClass('hidden');
+  });

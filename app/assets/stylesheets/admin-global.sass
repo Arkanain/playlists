@@ -1,0 +1,370 @@
+@import "config"
+@import "mixins"
+
+html, body
+  color: $base-color
+  font: 400 #{$base-font-size}/1.35 $base-font
+  line-height: 1.321em
+  overflow: inherit !important
+
+.row
+  max-width: 80rem !important
+
+#content
+  margin-top: 30px
+  h1
+    font-size: $h1
+    color: #333333
+    margin-bottom: 14px
+    span
+      font-size: $h2
+
+  h2, .h2
+    font-size: $h2
+    color: #333333
+
+  h3, .h3
+    font-size: $h3
+
+  h4, .h4
+    font-size: $h4
+    font-weight: bold
+    margin-bottom: 8px
+
+  table
+    th, td
+      font-size: 1em
+      padding: 5px 10px
+
+    &.open_table
+      border-top: 1px solid #cccccc
+      border-bottom: 1px solid #cccccc
+      border-right: none
+      border-left: none
+      border-collapse: collapse
+      td
+        padding: 15px 10px
+        overflow: hidden
+        text-overflow: ellipsis
+        vertical-align: middle
+        &:last-child
+          text-align: right
+          padding: 15px 10px 15px 10px
+
+        &.actions
+          min-width: 92px
+
+        &:first-child
+          padding: 15px 10px 15px 10px
+
+      th
+        padding: 15px 10px
+        vertical-align: middle
+        &:last-child
+          text-align: right
+          padding: 15px 10px 15px 10px
+
+        &:first-child
+          padding: 15px 10px 15px 10px
+
+        &.sorted-asc
+          background: image-url("admin/up.png") 10px center no-repeat
+          padding-left: 20px
+
+        &.sorted-desc
+          background: image-url("admin/down.png") 10px center no-repeat
+          padding-left: 20px
+
+      tr
+        background: none
+        border-top: 1px dotted #a9a9a9
+        &:first-child
+          border-top: none
+
+        &:hover, &:nth-of-type(2n)
+          background: #fdfdfd
+
+      &.centered
+        th, td
+          text-align: left
+          padding: 15px
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="search"],
+input[type="url"],
+textarea,
+label
+  font-size: inherit
+
+select
+  font-size: 1em
+
+input[type="text"], textarea
+  @include border-radius(3px)
+  &:focus
+    background: #fff
+    border-color: $sky_blue
+    @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.1) inset)
+
+textarea
+  min-height: 150px
+
+label
+  font-weight: bold
+  line-height: 25px
+  input[type="radio"]
+    margin: 6px 8px 5px 0
+
+label.onradio
+  font-weight: normal
+  input[type="radio"]
+    margin-right: 4px
+
+.f-dropdown
+  @include border-radius(5px)
+  margin-left: 0px
+  width: 190px
+  li
+    a
+      font-size: 1.077em
+
+    &:hover
+      background: $sky_blue
+      a
+        color: #fff
+
+.error
+  color: $red
+
+.fieldWithErrors
+  margin-bottom: 0
+  input
+    margin-bottom: 0
+
+/*------- buttons: -------*/
+.button, button
+  border: none
+  @include bt($sky_blue, $dark_sky)
+  @include box-shadow(1px 1px 1px rgba(0, 0, 0, 0.4))
+  color: #fff
+  font-size: inherit
+  padding: 0.55em 1.5em 0.55em
+  &.bt-red, &.alert
+    @include bt($light_red, $dark_red)
+
+  &.bt-black
+    @include bt($dark_gray, $dark)
+
+  &.bt-orange
+    @include bt($orange, $dark_orange)
+
+  &.bt-yellow
+    @include bt($yellow, $gold)
+
+  &.bt-green, &.success
+    @include bt($green, $dark_green)
+
+  &.bt-lime
+    @include bt($lime, $lime_green)
+
+  &.bt-sky, &.primary
+    @include bt($sky_blue, $dark_sky)
+
+  &.bt-grey, &.secondary
+    @include bt($light_grey, $sky_blue)
+    color: #393c40
+    box-shadow: none
+    font-size: 0.8em
+    border: 1px solid #c4c4c4
+    @include vertical-gradient(#fefefe, #e6e6e6)
+    &:hover
+      color: #fff
+      border-color: $sky_blue
+
+  &.tiny
+    padding: 0.35em 1em 0.35em
+
+  &.small
+    padding: 0.45em 1.2em 0.45em
+
+  &.medium
+    padding: 0.55em 1.5em 0.55em
+
+  &.large
+    padding: 0.8em 2.2em 0.8em
+
+  &.arrowed
+    text-align: left
+
+  &.expand
+    padding: 0.55em 1.5em
+
+  &.current
+    @include bt($green, $dark_green)
+
+  &.min_width
+    min-width: 95px
+
+  &.dropdown
+    padding-right: 50px
+
+  i
+    line-height: 18px
+
+.action-icon
+  &.inside
+    margin: 7px
+
+  i
+    font-size: 20px
+    &:hover
+      color: $red
+
+/*------- Lists: -------*/
+
+.items_list
+  margin: 0 0 15px
+  li
+    border-bottom: 1px dotted #A9A9A9
+    list-style: none
+    display: block
+    overflow: hidden
+    &:first-child
+      border-top: 1px dotted #A9A9A9
+
+    &:hover
+      background: #FDFDFD
+
+    a
+      display: block
+      padding: 4px 4px 4px 6px
+      &#cancel
+        color: #fff
+        display: inline-block
+
+    .edit_ng_playlist
+      margin-top: 15px
+
+ol
+  &.items_list
+    li
+      counter-increment: item
+
+    li:before
+      content: counter(item, decimal)
+      display: inline-block
+      margin-right: 4px
+
+.playlist, .courseslist, .quizzeslist
+  .items_list
+    li
+      position: relative
+      .controls
+        position: absolute
+        right: 0px
+        top: 0px
+        a
+          float: left
+          &:hover
+            color: $red
+
+ul.navigation_items
+  border: 2px dashed #555
+  list-style-type: none
+  margin: 0
+  min-height: 32px
+  padding: 10px
+  li
+    background: #3C3E42
+    border: 1px solid #999
+    @include border-radius(6px)
+    cursor: move
+    display: list-item
+    line-height: 32px
+    margin-bottom: 6px
+    a, span
+      color: #C9C9C9
+      margin-left: 10pt
+
+  .ui-state-highlight
+    background: #eee
+    height: 36px
+    border: 2px dashed #888
+
+ul.course_items
+  list-style-type: none
+  margin: 0
+  min-height: 32px
+  padding: 10px
+  li
+    background: #eee
+    border: 1px solid #999
+    @include border-radius(6px)
+    cursor: move
+    display: list-item
+    line-height: 32px
+    margin-bottom: 6px
+    a, span
+      color: #000
+      margin-left: 10pt
+
+    .controls
+      float: right
+      margin-right: 10px
+      i
+        cursor: pointer
+
+  .ui-state-highlight
+    background: #eee
+    height: 36px
+    border: 2px dashed #888
+
+.hidden
+  @include hidden
+
+input.hidden
+  @include hidden
+
+/*------- Modal: -------*/
+
+.modal-overlay
+  background: #000
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  opacity: 0.7
+  z-index: 9999
+
+.modal-wrapper
+  position: fixed
+  left: 50%
+  top: 10%
+  z-index: 10000
+  width: 50%
+  .modal-inner
+    background: #fff
+    @include border-radius(6px)
+    @include box-shadow(2px 2px 5px 0 rgba(50, 50, 50, 0.75))
+    padding: 15px
+    position: relative
+    left: -50%
+    z-index: 10001
+
+  .modal-close
+    background: $green
+    @include border-radius(20px)
+    @include box-shadow(1px -1px 5px 0 rgba(50, 50, 50, 0.75))
+    color: #fff
+    cursor: pointer
+    font-size: 1.3em
+    padding: 4px 6px
+    position: absolute
+    right: -12px
+    top: -12px
+    z-index: 10002
+    &:hover
+      background: $dark_green

@@ -1,0 +1,4 @@
+= form_for @playlist, remote: true do |f|
+  = f.text_field :title
+  = f.submit 'Save playlist', class: 'button round'
+  = link_to 'Cancel', '', id: 'cancel', class: 'button alert round'

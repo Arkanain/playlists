@@ -8,6 +8,9 @@ gem 'rails', '3.2.14'
 # UI
 gem 'sass'
 gem 'haml', '>= 3.1.2'
+gem 'foundation-rails', '~> 5.0'
+gem 'font-awesome-sass-rails'
+gem 'jquery-ui-rails'
 
 # Database
 gem 'pg'
