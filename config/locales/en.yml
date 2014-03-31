@@ -2,6 +2,11 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  home:
+    index:
+      user_name: 'Full name:'
+      date_birth: 'Birth date:'
+      city: 'City:'
   playlists:
     index:
       video_manager: 'Video Manager'
@@ -22,7 +27,7 @@ en:
     basket:
       empty_basket: 'You need add some video to this basket using YouTube search before added them to playlist'
       remove: 'Remove from basket'
-    add_song:
+    add_song_form:
       add_button: 'Add song'
       cancel_button: 'Cancel'
       new_song_button: 'New song'

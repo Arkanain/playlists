@@ -1,11 +1,11 @@
 .row.playlist
   .large-12.medium-12.small-12.columns
     %h1
-      = I18n.t('playlists.index.video_manager')
+      = t('.video_manager')
     .row
       .large-7.medium-7.small-7.columns
         %h3
-          = I18n.t('playlists.index.default_name')
+          = t('.default_name')
         %ul.items_list.mbm
           - @playlists.each do |playlist|
             %li
