@@ -10,5 +10,11 @@ Playlists::Application.routes.draw do
     delete  :remove_from_basket
   end
 
+  resources :pictures, only: [:index]
+  resources :gifs, only: [:index]
+  resources :facts, only: [:index]
+  resources :quotes, only: [:index]
+  resources :interesting_books, only: [:index]
+
   root to: 'home#index'
 end

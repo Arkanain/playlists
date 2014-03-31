@@ -1,30 +1,8 @@
 %ul.side-nav
-  %li
-    = link_to 'My page', root_path
-    = link_to content_tag(:i, '', class: 'fa fa-cogs'), '', class: 'cogs'
-  %li
-    = link_to 'Playlists', playlists_path
-  %li
-    = link_to 'Pictures', ''
-    -#= link_to 'Incredible art', ''
-    -#= link_to 'Erotic', ''
-    -#= link_to 'Incredible places', ''
-    -#= link_to 'Pets', ''
-  %li
-    = link_to 'Gifs', ''
-    -#= link_to 'Funny pets', ''
-    -#= link_to 'Fails', ''
-    -#= link_to 'Incredible world', ''
-  %li
-    = link_to 'Facts', ''
-    -#= link_to 'World', ''
-    -#= link_to 'Science', ''
-    -#= link_to 'History', ''
-    -#= link_to 'Fun', ''
-  %li
-    = link_to 'Quote', ''
-    -#= link_to 'Books', ''
-    -#= link_to 'Fun', ''
-    -#= link_to 'Famous peoples', ''
-  %li
-    = link_to 'Interesting books', ''
+  - @navigation.each_with_index do |nav_item, index|
+    %li
+      - if index == 0
+        = link_to nav_item.title, root_path
+        = link_to content_tag(:i, '', class: 'fa fa-cogs'), '', class: 'cogs'
+      - else
+        = link_to nav_item.title, eval("#{nav_item.title.titleize.delete(' ').underscore}_path")
