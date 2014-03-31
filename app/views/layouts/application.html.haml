@@ -8,9 +8,10 @@
   = javascript_include_tag "application"
   = csrf_meta_tags
 %body
-  #content
+  #section
     .row
       .large-2.columns.mbm
         = render 'navigation/left_nav'
       .large-10.columns
-        = yield
+        #content
+          = yield

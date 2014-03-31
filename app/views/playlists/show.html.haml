@@ -6,12 +6,12 @@
       #playlist_container
         .large-12.medium-12.small-12.columns
           %h3
-            = I18n.t('playlists.show.playlist_item')
+            = t('.playlist_item')
           %table#playlist_songs.large-12.medium-12.small-12.open_table.centered
             %tbody
               %tr
                 %th{width: "60%"}
-                  = I18n.t('playlists.show.playlist')
+                  = t('.playlist')
                 - @max_length.times do |number|
                   %th.text-center{width: "8%"}
                     = "Link #{(number + 65).chr}"
@@ -37,23 +37,23 @@
                             %a.add_video{ cell_id: number, song_id: song.id }
                               .add
                                 %i.fa.fa-plus
-                                = I18n.t('playlists.show.add_video')
+                                = t('.add_video')
                               = image_tag('http://placehold.it/100x100&text=video', alt: '', class: 'youtube_image')
                   %td.action-icon{width: "8%"}
                     = link_to content_tag(:i, '', class: 'fa fa-trash-o'), playlist_remove_song_entry_path(playlist_id: @playlist, song_id: song), method: :delete, remote: true, id: 'delete'
           - if @playlist.songs.empty?
             %p
-              = I18n.t('playlists.show.empty_playlist')
+              = t('.empty_playlist')
           .new-song-entry
-          = link_to I18n.t('playlists.show.new_entry'), playlist_new_song_entry_path(@playlist), remote: true, id: 'new-entry', class: 'button bt-sky round'
-          = link_to I18n.t('playlists.show.back_to_playlist'), playlists_path, class: 'button bt-sky round'
+          = link_to t('.new_entry'), playlist_new_song_entry_path(@playlist), remote: true, id: 'new-entry', class: 'button bt-sky round'
+          = link_to t('.back_to_playlist'), playlists_path, class: 'button bt-sky round'
     .row
       .large-12.medium-12.small-12.columns.mtm
         %h3
-          = I18n.t('playlists.show.video_search')
+          = t('.video_search')
         .video_search
           %p
-            = I18n.t('playlists.show.video_hint')
+            = t('.video_hint')
           %form{onsubmit: "video_manager.init({ 'videoHolder': 'video_holder', 'type': 'search', 'q': document.getElementById('video_search').value }); return false;"}
             %input#video_search{type: "text"}/
             %input.button.bt-sky.round.left{type: "submit", value: "Search"}/
@@ -74,7 +74,7 @@
     .modal-inner
       .modal-close.fa.fa-times
       %h3
-        = I18n.t('playlists.show.video_list')
+        = t('.video_list')
       #playlist_basket
         = render template: 'playlists/basket'
 

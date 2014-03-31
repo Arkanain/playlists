@@ -10,5 +10,5 @@ Playlists::Application.routes.draw do
     delete  :remove_from_basket
   end
 
-  root to: 'playlists#index'
+  root to: 'home#index'
 end

@@ -1,0 +1,30 @@
+.row
+  .large-12.medium-12.small-12.columns
+    .large-4.medium-4.small-4.columns
+      #logo
+        -#= @profile.logo
+    .large-8.medium-8.small-8.columns
+      #full-name
+        .row
+          .large-3.medium-3.small-3.columns
+            %h4
+              = t('.user_name')
+          .large-9.medium-9.small-9.columns.line-height-33
+            User name
+            -#= @profile.full_name
+      #date-birth
+        .row
+          .large-3.medium-3.small-3.columns
+            %h4
+              = t('.date_birth')
+          .large-9.medium-9.small-9.columns.line-height-33
+            13/10/1980
+            -#= @profile.birth_date
+      #city
+        .row
+          .large-3.medium-3.small-3.columns
+            %h4
+              = t('.city')
+          .large-9.medium-9.small-9.columns.line-height-33
+            Chicago
+            -#= @profile.city

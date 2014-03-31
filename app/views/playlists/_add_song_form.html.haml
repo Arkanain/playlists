@@ -4,11 +4,11 @@
       = f.collection_select :song_id, Song.all, :id, :title, style: 'display: none;'
     #new_entry
       = f.text_field :song_name
-    = f.submit I18n.t('playlists.add_song.add_button'), class: 'button bt-sky round'
-    = link_to I18n.t('playlists.add_song.cancel_button'), '', id: 'cancel', class: 'button bt-red round'
+    = f.submit t('.add_button'), class: 'button bt-sky round'
+    = link_to t('.cancel_button'), '', id: 'cancel', class: 'button bt-red round'
   #song_entry
-    = link_to I18n.t('playlists.add_song.new_song_button'), '', id: 'new_song', class: 'button bt-green round'
-    = link_to I18n.t('playlists.add_song.already_button'), '', id: 'added_song', class: 'button bt-green round'
+    = link_to t('.new_song_button'), '', id: 'new_song', class: 'button bt-green round'
+    = link_to t('.already_button'), '', id: 'added_song', class: 'button bt-green round'
 
 :javascript
   $('#new_song').click(function(e) {
